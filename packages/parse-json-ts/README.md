@@ -137,4 +137,4 @@ See the [monorepo readme](https://www.github.com/erichosick/sqlw).
 
 ## License
 
-Licensed under [MIT](./LICENSE.md).
+Licensed under MIT. See LICENSE.md.
