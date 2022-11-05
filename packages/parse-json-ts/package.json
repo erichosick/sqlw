@@ -15,7 +15,7 @@
     "url": "https://github.com/erichosick/sqlw/issues",
     "email": "erichosick@gmail.com"
   },
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "main": "./src/index.ts",
   "directories": {
     "lib": "lib",
