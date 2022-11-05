@@ -1,0 +1,35 @@
+{
+  "name": "@sqlw/parse-json-ts",
+  "version": "1.0.0",
+  "description": "`pares-json-ts` is a typescript package that converts JSON text to a javascript object: optionally verifying and casting the object type.",
+  "keywords": [
+    "typescript",
+    "json parser",
+    "json validator",
+    "reviver"
+  ],
+  "type": "module",
+  "author": "Eric Hosick <erichosick@gmail.com>",
+  "homepage": "https://github.com/erichosick/sqlw/tree/main/packages/parse-json-ts",
+  "bugs": {
+    "url": "https://github.com/erichosick/sqlw/issues",
+    "email": "erichosick@gmail.com"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "./src/index.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erichosick/sqlw.git"
+  }
+}
