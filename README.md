@@ -55,7 +55,7 @@ yarn publish:all
 
 ```bash
 # Add a new project
-yarn lerna:create {@name/new-package-name}  # Example yarn lerna:create @trkm/http-context
+yarn lerna:create {@name/new-package-name}  # Example yarn lerna:create @sqlw/http-context
 
 # Link it to other projects
 yarn lerna add {@name/existing-module} --scope={@name/new-package-name}
@@ -66,5 +66,5 @@ yarn lerna add {@name/existing-module} --scope={@name/new-package-name}
 ```bash
 yarn lerna add {@name/existing-module} --scope={@name/new-package-name}
 # example
-yarn lerna add @trkm/http-cookies-ts --scope=@trkm/http-context
+ yarn lerna add @sqlw/universal-schema --scope=@sqlw/iso-schema
 ```
