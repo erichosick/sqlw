@@ -7,12 +7,44 @@
 * 100% typescript.
 * 100% asynchronous library.
 * functions
+  * **fileContentDetailStr** - Returns a file path and file content as a string.
   * **fileExists** - Check if a file exists.
   * **readFile** - Read from a file returning a Buffer.
   * **readFileString** -Read from a file returning a string.
   * **allParentPaths** - Returns an array of all parent paths.
 
 ## Usage
+
+## **fileContentDetailStr** - Get a Files Path and Associated Contents
+
+Reads the contents of a file, converting the contents to a string, and
+returning the contents of the file associated with the path of the file.
+
+* **@param path** -  The absolute or relative path to the file.
+* **@param [options]**
+  * **[options.required=true]** - When `true` or `undefined`, when the file is
+  not found an exception is thrown. When `false`, no exception is thrown and
+  `undefined` is returned.
+* **error** - An error is thrown if the file is not found and
+`options.required` was set to true.
+* **returns** - The contents of the file along with the associated path.
+Undefined may be returned if the `options.required` was set to false.
+
+Example usage:
+
+```typescript
+import { join } from 'node:path';
+import { fileContentDetailStr } from '@sqlw/file-async-ts';
+
+(async () => {
+  const dir = join(__dirname, 'test-files', 'info.txt');
+  const contentDetail = await fileContentDetailStr(dir);
+  expect(contentDetail?.content)
+    .toEqual('A file with content.');
+  expect(contentDetail?.filePath)
+    .toMatch(/[\S]*\/__tests__\/test-files\/info.txt$/);
+})();
+```
 
 ## **fileExists** - Asynchronously Checking if a File Exists
 

@@ -219,6 +219,75 @@ export const allParentPaths: AllParentPathsSignature = (
 
 // -----------------------------------------------------------------------------
 
+/**
+ * Associates a file's path with the files' content.
+ */
+export interface FileContentDetailStr<ContentType> {
+
+  /**
+   * The path to the file that contained the content
+   */
+  filePath: string,
+
+  /**
+   * The content of the file of the type defined by the generic.
+   */
+  content: ContentType
+}
+
+/**
+ * `fileContentDetailStr` function signature.
+ */
+
+export type FileContentDetailStrSignature = (
+  path: string,
+  options?: ReadOptions,
+) => Promise<FileContentDetailStr<string> | undefined>;
+
+/**
+ * Reads the contents of a file, converting the contents to a string, and
+ * returning the contents of the file associated with the path of the file.
+ *
+ * * **@param path** -  The absolute or relative path to the file.
+ * * **@param [options]**
+ *   * **[options.required=true]** - When `true` or `undefined`, when the file is
+ *   not found an exception is thrown. When `false`, no exception is thrown and
+ *   `undefined` is returned.
+ * * **error** - An error is thrown if the file is not found and
+ * `options.required` was set to true.
+ * * **returns** - The contents of the file along with the associated path.
+ * Undefined may be returned if the `options.required` was set to false.
+ *
+ * Example usage:
+ *
+ * ```typescript
+ * import { join } from 'node:path';
+ * import { fileContentDetailStr } from '@sqlw/file-async-ts';
+ *
+ * (async () => {
+ *   const dir = join(__dirname, 'test-files', 'info.txt');
+ *   const contentDetail = await fileContentDetailStr(dir);
+ *   expect(contentDetail?.content)
+ *     .toEqual('A file with content.');
+ *   expect(contentDetail?.filePath)
+ *     .toMatch(/[\S]*\/__tests__\/test-files\/info.txt$/);
+ * })();
+ * ```
+*/
+export const fileContentDetailStr: FileContentDetailStrSignature = async (
+  path: string,
+  options?: ReadOptions,
+): Promise<FileContentDetailStr<string> | undefined> => {
+  const content = await readFileString(path, options);
+  return content === undefined ? undefined
+    : {
+      filePath: path,
+      content,
+    };
+};
+
+// -----------------------------------------------------------------------------
+
 // /**
 //  * allParentPath options interface
 //  */
