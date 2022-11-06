@@ -116,6 +116,14 @@ export interface ParseOptions {
 }
 
 /**
+ * `parseJson` function signature.
+ */
+export type ParseJsonSignature = <DataType>(
+  data: string,
+  options?: ParseOptions,
+) => DataType;
+
+/**
  * Convert a string to a javascript object using the generic function
  * `parseJson`. When `options.verify` is provided, parseJson can confirm that
  * the object is of the type returned by the generic.
@@ -141,7 +149,7 @@ export interface ParseOptions {
  * });
 ```
 */
-export const parseJson = <DataType>(
+export const parseJson: ParseJsonSignature = <DataType>(
   data: string,
   options?: ParseOptions,
 ): DataType => {

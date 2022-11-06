@@ -1,6 +1,6 @@
 # **@sqlw/parse-json-ts**
 
-`pares-json-ts` is a typescript package that converts JSON text to a javascript object: optionally verifying and casting the object type.
+`@sqlw/pares-json-ts` is a typescript package that converts JSON text to a javascript object: optionally verifying and casting the object type.
 
 ## Features
 
