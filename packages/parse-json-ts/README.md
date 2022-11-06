@@ -11,6 +11,7 @@
   * [ts-json-validator](https://www.npmjs.com/package/ts-json-validator)
   * [ts.data.json](https://www.npmjs.com/package/ts.data.json)
   * [typedjson](<https://www.npmjs.com/package/@upe/typedjson>)
+  * [typebox](https://www.npmjs.com/package/@sinclair/typebox)
 
 ## Usage
 
