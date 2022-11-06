@@ -1,5 +1,10 @@
-import { join } from 'node:path';
-import { fileExists } from '../src/index';
+import {
+  join,
+} from 'node:path';
+
+import {
+  fileExists,
+} from '../src/index';
 
 describe('fileExists', () => {
   it('should return true if a file exits', async () => {

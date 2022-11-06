@@ -68,3 +68,12 @@ yarn lerna add {@name/existing-module} --scope={@name/new-package-name}
 # example
  yarn lerna add @sqlw/universal-schema --scope=@sqlw/iso-schema
 ```
+
+,
+  "dependencies": {
+    "@schemastore/package": "^0.0.6",
+    "@types/glob": "^8.0.0",
+    "dependency-tree": "^8.1.2",
+    "glob": "^8.0.3",
+    "glob-promise": "^5.0.0"
+  }

@@ -1,5 +1,10 @@
-import { join } from 'node:path';
-import { readFile } from '../src/index';
+import {
+  join,
+} from 'node:path';
+
+import {
+  readFile,
+} from '../src/index';
 
 describe('readFile', () => {
   it('should read a file', async () => {
