@@ -165,15 +165,16 @@ export type AllParentPathsSignature = (
 ) => string[];
 
 /**
- * Given an absolute path, returns an array containing all possible parent paths
- * including the root path ordered by the child path first.
+ * Given an absolute path, `allParentPaths` returns an array containing all
+ * possible parent paths, including the root path ordered by the child path
+ * to the root path.
  *
  * **Note:** The child path is normalized before all possible parent paths are
  * generated. For example, `/cat/../and/mouse` becomes `/and/mouse`.
  *
  * * **@param childPath** - The absolute path used to generate all possible
  *  parent paths.
- * * **error** - An error is thrown if `childPath` is not an absolute path.
+ * * **@error** - An error is thrown if `childPath` is not an absolute path.
  * * **@returns** - An array containing all possible parent paths
  * including the root path ordered by the child path first.
  *
