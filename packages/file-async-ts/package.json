@@ -1,6 +1,6 @@
 {
   "name": "@sqlw/file-async-ts",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "``@sqlw/file-async-ts` is a typescript library applying the facade pattern to asynchronous file access.",
   "keywords": [
     "typescript",
