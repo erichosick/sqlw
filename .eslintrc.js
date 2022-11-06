@@ -37,6 +37,9 @@ module.exports = {
     // https://medium.com/@paul.beynon/thanks-for-taking-the-time-to-write-the-article-i-enjoyed-it-db916026647
     'no-restricted-syntax': 'off',
 
+    // Enable files that have no default export.
+    'import/prefer-default-export': 'off',
+
   },
   settings: {
     // fix -  Unable to resolve path to module '../src'
