@@ -1,6 +1,6 @@
 {
   "name": "@sqlw/parse-json-ts",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "`pares-json-ts` is a typescript package that converts JSON text to a javascript object: optionally verifying and casting the object type.",
   "keywords": [
     "typescript",
