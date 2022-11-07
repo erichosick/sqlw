@@ -6,7 +6,7 @@ describe('allParentPaths', () => {
   describe('POSIX', () => {
     it(`should return all all possible parent paths 
       including the child path`, async () => {
-      const result = allParentPaths('/cat/mouse');
+      const result: string[] = allParentPaths('/cat/mouse');
       expect(result).toEqual([
         '/cat/mouse',
         '/cat',
@@ -16,7 +16,7 @@ describe('allParentPaths', () => {
 
     it(`should normalize the child path before return all all possible
     parent paths  including the child path`, async () => {
-      const result = allParentPaths('/cat/../and/mouse');
+      const result: string[] = allParentPaths('/cat/../and/mouse');
       expect(result).toEqual(
         [
           '/and/mouse',

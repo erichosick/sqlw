@@ -9,7 +9,7 @@ import {
 describe('readFile', () => {
   it('should read a file', async () => {
     const dir = join(__dirname, 'read-file.unit.spec.ts');
-    const content = await readFile(dir);
+    const content: Buffer | undefined = await readFile(dir);
     expect(content).toBeDefined();
   });
 

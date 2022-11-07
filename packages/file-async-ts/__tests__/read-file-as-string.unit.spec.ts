@@ -9,13 +9,13 @@ import {
 describe('readFileString', () => {
   it('should read a file', async () => {
     const dir = join(__dirname, 'read-file-as-string.unit.spec.ts');
-    const content = await readFileString(dir);
+    const content: string | undefined = await readFileString(dir);
     expect(content).toBeDefined();
   });
 
   it('should NOT error if a file is not found and required = false', async () => {
     const dir = join(__dirname, 'no_such_file.txt');
-    const content = await readFileString(dir, { required: false });
+    const content: string | undefined = await readFileString(dir, { required: false });
     expect(content).toBeUndefined();
   });
 

@@ -21,17 +21,18 @@ export type FileExistsSignature = (
 /**
  * Asynchronously check if a file exists.
  *
- * * **@param path** -  The absolute or relative path to the file.
+ * * **@param path** - The absolute or relative path to the file.
  * * **@returns** - True when the file exists and false otherwise.
  *
- * Example usage:
+ * **@example**
+ * Checks if a file exits.
  *
  * ```typescript
  * import { join } from 'node:path';
  * import { fileExists } from '@sqlw/file-ts';
  *
  * const dir = join(__dirname, 'file-exists.unit.spec.ts');
- * const exists = await fileExists(dir);
+ * const exists: boolean = await fileExists(dir);
  * expect(exists).toEqual(true);
  * ```
 */
@@ -51,6 +52,8 @@ export interface ReadOptions {
   /**
    * When `true` or `undefined`, when the file is not found an exception is
    * thrown. When `false`, no exception is thrown and `undefined` is returned.
+   *
+   * **@defaultValue** - True or undefined
    */
   required?: boolean
 }
@@ -67,8 +70,9 @@ export type ReadFileSignature = (
  * Given an absolute or relative path, asynchronously reads all the contents of
  * the file into a buffer.
  *
- * **Warning:** Intended use is only for relatively small files. For large files
- * using streams.
+ * **@remarks**
+ * Intended use is only for relatively small files. For large files
+ * use streams.
  *
  * * **@param path** - The absolute or relative path to the file.
  *
@@ -77,11 +81,12 @@ export type ReadFileSignature = (
  *   not found an exception is thrown. When `false`, no exception is thrown and
  *   `undefined` is returned.
  *
- * * **@error** - Errors if the file is not found when `options.required` is `true`.
+ * * **@throws** - Errors if the file is not found when `options.required` is `true`.
  * * **@returns** - Contents of the file as a buffer if the file existed,
  *   `undefined` when required is `false` and the file was not found.
  *
- * Example usage:
+ * **@example**
+ * Reads the contents of a file into a `Buffer`.
  *
  * ```typescript
  * import { join } from 'node:path';
@@ -89,7 +94,7 @@ export type ReadFileSignature = (
  *
  * (async () => {
  *   const dir = join(__dirname, 'index.ts');
- *   const content = await readFile(dir);
+ *   const content: Buffer | undefined = await readFile(dir);
  *   console.log(content);
  * })();
  * ```
@@ -122,8 +127,9 @@ export type readFileStringSignature = (
  * Given an absolute or relative path, asynchronously reads all the contents of
  * the file into a string.
  *
- * **Warning:** Intended use is only for relatively small files. For large files
- * using streams.
+ * **@remarks**
+ * Intended use is only for relatively small files. For large files
+ * use streams.
  *
  * * **@param path** - The absolute or relative path to the file.
  *
@@ -132,18 +138,19 @@ export type readFileStringSignature = (
  *   not found an exception is thrown. When `false`, no exception is thrown and
  *   `undefined` is returned.
  *
- * * **@error** - Errors if the file is not found when `options.required` is `true`.
+ * * **@throws** - Errors if the file is not found when `options.required` is `true`.
  * * **@returns** - Contents of the file as a string if the file existed,
  *   `undefined` when required is `false` and the file was not found.
  *
- * Example usage:
+ * **@example**
+ * Reads the contents of a file into a `string`.
  *
  * ```typescript
  * import { join } from 'node:path';
  * import { readFileString } from '@sqlw/file-ts';
  *
  * const dir = join(__dirname, 'read-file.unit.spec.ts');
- * const content = await readFileString(dir);
+ * const content: string | undefined = await readFileString(dir);
  * expect(content).toBeDefined();
  * ```
 */
@@ -169,23 +176,24 @@ export type AllParentPathsSignature = (
  * possible parent paths, including the root path ordered by the child path
  * to the root path.
  *
- * **Note:** The child path is normalized before all possible parent paths are
+ * **@remarks**
+ * The child path is normalized before all possible parent paths are
  * generated. For example, `/cat/../and/mouse` becomes `/and/mouse`.
  *
  * * **@param childPath** - The absolute path used to generate all possible
  *  parent paths.
- * * **@error** - An error is thrown if `childPath` is not an absolute path.
+ * * **@throws** - An error is thrown if `childPath` is not an absolute path.
  * * **@returns** - An array containing all possible parent paths
  * including the root path ordered by the child path first.
  *
- * Example usage:
+ * **@example**
  *
  * ```typescript
  * import {
  *   allParentPaths,
  * } from '@sqlw/file-async-ts';
  *
- * const result = allParentPaths('/cat/mouse');
+ * const result: string[] = allParentPaths('/cat/mouse');
  * expect(result).toEqual([
  *   '/cat/mouse',
  *   '/cat',
@@ -220,20 +228,31 @@ export const allParentPaths: AllParentPathsSignature = (
 // -----------------------------------------------------------------------------
 
 /**
- * Associates a file's path with the files' content.
+ * Associates content with it's source.
+ *
+ * **@example**
+ * If the content source is a file then source would be the path to the file.
  */
-export interface FileContentDetailStr<ContentType> {
+export interface ContentSource<ContentType> {
 
   /**
-   * The path to the file that contained the content
+   * The source of the content.
+   *
+   * **@example**
+   * A path to a file.
    */
-  filePath: string,
+  sourcePath: string,
 
   /**
-   * The content of the file of the type defined by the generic.
+   * The content at the source of the type defined by the generic.
+   *
+   * **@example**
+   * The contents of a file.
    */
   content: ContentType
 }
+
+export type ContentSources<ContentType> = ContentSource<ContentType>[];
 
 /**
  * `fileContentDetailStr` function signature.
@@ -242,7 +261,7 @@ export interface FileContentDetailStr<ContentType> {
 export type FileContentDetailStrSignature = (
   path: string,
   options?: ReadOptions,
-) => Promise<FileContentDetailStr<string> | undefined>;
+) => Promise<ContentSource<string> | undefined>;
 
 /**
  * Reads the contents of a file, converting the contents to a string, and
@@ -253,12 +272,13 @@ export type FileContentDetailStrSignature = (
  *   * **[options.required=true]** - When `true` or `undefined`, when the file is
  *   not found an exception is thrown. When `false`, no exception is thrown and
  *   `undefined` is returned.
- * * **error** - An error is thrown if the file is not found and
+ * * **@throws** - An error is thrown if the file is not found and
  * `options.required` was set to true.
  * * **returns** - The contents of the file along with the associated path.
  * Undefined may be returned if the `options.required` was set to false.
  *
- * Example usage:
+ * **@example**
+ * Return file meta data and content details.
  *
  * ```typescript
  * import { join } from 'node:path';
@@ -277,91 +297,11 @@ export type FileContentDetailStrSignature = (
 export const fileContentDetailStr: FileContentDetailStrSignature = async (
   path: string,
   options?: ReadOptions,
-): Promise<FileContentDetailStr<string> | undefined> => {
+): Promise<ContentSource<string> | undefined> => {
   const content = await readFileString(path, options);
   return content === undefined ? undefined
     : {
-      filePath: path,
+      sourcePath: path,
       content,
     };
 };
-
-// -----------------------------------------------------------------------------
-
-// /**
-//  * allParentPath options interface
-//  */
-//  export interface AllParentPathOptions {
-
-//   /**
-//    * When true, an exception is thrown if the childPath doesn't exists.
-//    */
-//   verifyChildPathExists: boolean,
-// }
-
-// /**
-//  * `allParentPaths` function signature.
-//  */
-// export type AllParentPathsSignature = (
-//   childPath: string,
-//   options?: AllParentPathOptions,
-// ) => Promise<string[]>;
-
-// export const allParentPaths: AllParentPathsSignature = async (
-//   childPath: string,
-//   options?: AllParentPathOptions,
-// ): Promise<string[]> => {
-//   const normalizedPath = normalize(childPath);
-
-//   if (!isAbsolute(normalizedPath)) {
-//     throw new Error(`The path '${childPath}' must be an absolute path.`);
-//   }
-
-//   if (options?.verifyChildPathExists) {
-//     const exists = await fileExists(normalizedPath);
-//     if (!exists) {
-//       throw new Error(`The path '${childPath}' was not found.`);
-//     }
-//   }
-
-//   const pathRoot = parse(normalizedPath).root;
-//   let currentPath = normalizedPath;
-//   const paths: string[] = [];
-
-//   while (currentPath !== '') {
-//     paths.push(currentPath);
-//     if (currentPath === pathRoot) {
-//       currentPath = '';
-//     } else {
-//       currentPath = dirname(currentPath);
-//     }
-//   }
-//   return paths;
-// };
-
-// Given an absolute path, returns an array containing all possible parent paths
-// including the root path ordered by the child path first.
-
-// * **@param childPath** - The absolute path used to generate all possible
-//  parent paths.
-// * **@param [options]**
-//   * [options.verifyChildPathExists = false] - When true, an exception is
-//    thrown if the childPath doesn't exists.
-// * **error** - An error is thrown if `options.verifyChildPathExists` is set
-// to true and the `childPath` does not exists.
-// * **@returns** - An array containing all possible parent paths
-// including the root path ordered by the child path first.
-
-// Example usage:
-
-// ```typescript
-// import { readFileString } from '@sqlw/file-async-ts';
-
-// (async () => {
-
-// const result = await allParentPaths('/cat/mouse');
-// expect (result).toEqual([
-//   '/cat/mouse',
-//   '/cat',
-//   '/'
-// ]);

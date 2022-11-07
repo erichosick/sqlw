@@ -5,15 +5,16 @@
  * For members with nested objects, the transformation of that nested object
  * occurs before the member.
  *
- * **Warning:** The reviver function can't be implemented using an arrow
- * function.
+ * **@remarks**
+ * The reviver function can't be implemented using an arrow function.
  *
  * * **@param this** - The complete parsed object instance.
  * * **@param key** - The active member in review.
  * * **@param value** - The active member's value.
  * * **@returns** - The final member's value.
  *
- *  Example reviver function:
+ * **@example**
+ * A reviver function that adds 1 to age.
  *
  * ```typescript
  * interface User {
@@ -35,7 +36,7 @@
  *
  * const userJson = '[{"name": "Happy User", "age": 23}]';
  *
- * // Warning: Without providing a verify function, casting of the parsed
+ * // @remarks: Without providing a verify function, casting of the parsed
  * // json to User[] is done without verification and could lead to runtime
  * // errors.
  * const user: User[] = parseJson<User[]>(
@@ -60,7 +61,8 @@ export type ReviverSignature = (
  * The verify function should return `true` when the JSON is of the expected
  * type. The verify function should throw an `Error` otherwise.
  *
- * Example verify function:
+ * **@example**
+ * Verify the object is a User.
  *
  * ```typescript
  * const verifyUser: VerifySignature = (
@@ -133,11 +135,12 @@ export type ParseJsonSignature = <DataType>(
  *   * [options.verify] - Verifies that the parsed object is of the desired
  *   type.
  *   * [options.revive] - Mutate the object during parsing.
- * * **@error** - Throws an error if the data is not valid JSON. If provided,
+ * * **@throws** - Throws an error if the data is not valid JSON. If provided,
  *   `verify` might also throw an error.
  * * **@returns** - A javascript object of the type defined by the generic.
  *
- * Example conversion without verification:
+ * **@example**
+ * Conversion without verification.
  *
  * ```typescript
  * const json = '{"name": "Happy User", "age": 23}';

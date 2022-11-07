@@ -24,7 +24,7 @@ describe('parseJson - reviver', () => {
 
     const userJson = '[{"name": "Happy User", "age": 23}]';
 
-    // Warning: Without providing a verify function, casting of the parsed
+    // @remarks: Without providing a verify function, casting of the parsed
     // json to User[] is done without verification and could lead to runtime
     // errors.
     const user: User[] = parseJson<User[]>(

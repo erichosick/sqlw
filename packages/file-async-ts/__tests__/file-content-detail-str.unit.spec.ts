@@ -11,7 +11,8 @@ describe('fileContentDetailStr', () => {
     const dir = join(__dirname, 'test-files', 'info.txt');
     const contentDetail = await fileContentDetailStr(dir);
     expect(contentDetail?.content).toEqual('A file with content.');
-    expect(contentDetail?.filePath).toMatch(/[\S]*\/__tests__\/test-files\/info.txt$/);
+    expect(contentDetail?.sourcePath)
+      .toMatch(/[\S]*\/__tests__\/test-files\/info.txt$/);
   });
 
   it(`should NOT error if a file is not found and

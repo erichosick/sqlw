@@ -1,7 +1,5 @@
 # sqlw
 
-Contains sql-watch and re-usable database schema.
-
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 ## Development
@@ -55,7 +53,7 @@ yarn publish:all
 
 ```bash
 # Add a new project
-yarn lerna:create {@name/new-package-name}  # Example yarn lerna:create @sqlw/http-context
+yarn lerna:create {@name/new-package-name}  # @example yarn lerna:create @sqlw/http-context
 
 # Link it to other projects
 yarn lerna add {@name/existing-module} --scope={@name/new-package-name}
@@ -68,12 +66,3 @@ yarn lerna add {@name/existing-module} --scope={@name/new-package-name}
 # example
  yarn lerna add @sqlw/universal-schema --scope=@sqlw/iso-schema
 ```
-
-,
-  "dependencies": {
-    "@schemastore/package": "^0.0.6",
-    "@types/glob": "^8.0.0",
-    "dependency-tree": "^8.1.2",
-    "glob": "^8.0.3",
-    "glob-promise": "^5.0.0"
-  }
