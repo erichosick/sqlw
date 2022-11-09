@@ -28,7 +28,7 @@
     "test:integration": "jest --config=./jest.unit.config.ts && yarn lerna run test:browsers",
     "test:browsers": "yarn lerna run test:browsers",
     "test:browsers:watch": "yarn lerna run test:browsers:watch",
-    "publish:all": "yarn test:integration && yarn build && yarn lerna publish",
+    "publish:all": "yarn lerna publish",
     "lerna:create": "yarn lerna create -y",
     "tsc": "echo \"You probably don't want to run tsc at the root of this mono-repo. It creates maps and types for every ts file!\""
   },
