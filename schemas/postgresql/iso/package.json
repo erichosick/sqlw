@@ -1,0 +1,32 @@
+{
+  "name": "@sqlw/iso-postgresql",
+  "version": "0.0.0",
+  "description": "Contains iso data for languages, countries, etc. Date comes from places like https://datahub.io/collections/reference-data.",
+  "keywords": [
+    "sqlw",
+    "sql-watch",
+    "database schema",
+    "postgresql"
+  ],
+  "author": "Eric Hosick <erichosick@gmail.com>",
+  "homepage": "https://github.com/erichosick/sqlw/tree/main/packages/schemas/iso-schema",
+  "bugs": {
+    "url": "https://github.com/erichosick/sqlw/issues",
+    "email": "erichosick@gmail.com"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erichosick/sqlw.git"
+  },
+  "dependencies": {
+    "@sqlw/universal-postgresql": "^0.0.0"
+  },
+  "database": {
+    "platform": "postgresql"
+  }
+}

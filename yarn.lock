@@ -1667,6 +1667,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@sqlpm/file-async-ts@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@sqlpm/file-async-ts/-/file-async-ts-1.0.0.tgz#74566b0d83c737dfe9ec2d36ead32d690d8f7c26"
+  integrity sha512-qLWPToo4oyjITx/NOVO6Hvhpgp3PHbxcYKMwb4UNk3TMjtnI9WXQagChiTKW+mlYtfhktoBGzJif8mLmxTkWkQ==
+
 "@tootallnate/once@2":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@tootallnate/once/-/once-2.0.0.tgz"
